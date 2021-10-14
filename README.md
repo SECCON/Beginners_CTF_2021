@@ -1,6 +1,6 @@
 # SECCON Beginners CTF 2021
 ## Detail
-- Date: 2020/5/22 14:00 JST - 2020/5/23 14:00 JST
+- Date: 2021/5/22 14:00 JST - 2021/5/23 14:00 JST
 - Style: Jeopardy
 
 ## License
