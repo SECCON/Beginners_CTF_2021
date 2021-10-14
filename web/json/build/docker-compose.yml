@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  nginx:
+    build: ./nginx
+    ports:
+      - 80:80
+  bff:
+    build: ./bff
+  api:
+    build: ./api
+    environment:
+      - FLAG=ctf4b{j50n_is_v4ry_u5efu1_bu7_s0metim3s_it_bi7es_b4ck}

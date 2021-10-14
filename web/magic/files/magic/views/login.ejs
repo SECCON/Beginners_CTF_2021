@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Login - Magic Memo App</title>
+  <link rel="stylesheet" href="/static/bulma.min.css">
+</head>
+
+<body>
+  <div class="container">
+    <section class="hero">
+      <div class="hero-body">
+        <p class="title">Login</p>
+      </div>
+    </section>
+    <section class="px-5">
+      <form method="POST" action="/login">
+        <div class="field">
+          <label class="label">Username</label>
+          <div class="control">
+            <input class="input" type="text" name="username" id="usernameTextField" placeholder="Username">
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Password</label>
+          <div class="control">
+            <input class="input" type="text" name="password" id="passwordTextField" placeholder="Password">
+          </div>
+        </div>
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <div class="control">
+          <button type="submit" class="button is-link">Login</button>
+        </div>
+      </form>
+      <% if (message !== "") { %>
+        <div class="notification is-danger mt-4">
+          <p><%= message %></p>
+        </div>
+      <% } %>
+      <p class="mt-2">You don't have an account? Go <a href="/register">register</a>.</p>
+    </section>
+  </div>
+</body>
+
+</html>

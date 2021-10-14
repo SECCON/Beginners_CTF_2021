@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  rewriter:
+    build:
+      context: .
+    restart: always
+    working_dir:  /home/pwn
+    container_name: rewriter 
+    ulimits:
+      nproc: 65535
+      core: 0
+    ports:
+      - "4103:4103"
+    entrypoint: /etc/init.sh

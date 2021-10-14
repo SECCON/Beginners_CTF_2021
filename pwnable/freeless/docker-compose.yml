@@ -1,0 +1,13 @@
+version: '3'
+services:
+  freeless:
+    build:
+      context: .
+    working_dir: /home/pwn
+    container_name: freeless
+    ulimits:
+      nproc: 65535
+      core: 0
+    ports:
+      - "9077:9999"
+    entrypoint: /etc/init.sh

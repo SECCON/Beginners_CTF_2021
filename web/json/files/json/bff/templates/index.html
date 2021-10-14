@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Internal Website / 内部ページ</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css"
+    />
+  </head>
+
+  <body>
+    <section class="section">
+      <div class="container">
+        <h1 class="title">Internal Website / 内部ページ</h1>
+        <p class="subtitle mt-1">
+          You can get special information in this page.
+        </p>
+        <div class="field">
+          <label class="label">Select item</label>
+          <div class="control">
+            <div class="select">
+              <select id="item">
+                <option>Quick brown fox</option>
+                <option>Lorem ipsum</option>
+                <option>Flag</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="field is-grouped">
+          <div class="control">
+            <button id="submit" class="button is-link">Submit</button>
+          </div>
+        </div>
+        <div id="message"></div>
+      </div>
+    </section>
+    <script>
+      let submit = document.getElementById("submit");
+      let message = document.getElementById("message");
+      submit.addEventListener("click", (event) => {
+        message.innerHTML = "";
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", "/");
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.onload = () => {
+          if (xhr.status === 200) {
+            message.innerHTML =
+              '<article class="message is-success"><div class="message-header"><p>Success</p></div><div class="message-body">' +
+              JSON.parse(xhr.response).result +
+              "</div></article>";
+          } else {
+            message.innerHTML =
+              '<article class="message is-danger"><div class="message-header"><p>Error</p></div><div class="message-body">' +
+              JSON.parse(xhr.response).error +
+              "</div></article>";
+          }
+        };
+        data = JSON.stringify({
+          id: document.getElementById("item").selectedIndex,
+        });
+        xhr.send(data);
+      });
+    </script>
+  </body>
+</html>

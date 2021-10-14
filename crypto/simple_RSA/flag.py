@@ -1,0 +1,1 @@
+flag = "ctf4b{0,1,10,11...It's_so_annoying.___I'm_done}"

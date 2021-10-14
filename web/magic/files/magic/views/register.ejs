@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Register - Magic Memo App</title>
+  <link rel="stylesheet" href="/static/bulma.min.css">
+</head>
+
+<body>
+  <div class="container">
+    <section class="hero">
+      <div class="hero-body">
+        <p class="title">Register</p>
+      </div>
+    </section>
+    <section class="px-5">
+      <form method="POST" action="/register">
+        <div class="field">
+          <label class="label">Username</label>
+          <div class="control">
+            <input class="input" type="text" name="username" id="usernameTextField" placeholder="Username">
+          </div>
+          <p class="help">The username must be 8-64 characters in length.</p>
+        </div>
+        <div class="field">
+          <label class="label">Password</label>
+          <div class="control">
+            <input class="input" type="text" name="password" id="passwordTextField" placeholder="Password">
+          </div>
+          <p class="help">The password must be 8-64 characters in length, and contain at least 1 lower case letter, and 1 numeric character.</p>
+        </div>
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <div class="control">
+          <button type="submit" class="button is-link">Register</button>
+        </div>
+      </form>
+      <% if (message !== "") { %>
+        <div class="notification is-danger mt-4">
+          <p><%= message %></p>
+        </div>
+      <% } %>
+      <p class="mt-2">Do you already have an account? Go <a href="/login">login</a>.</p>
+    </section>
+  </div>
+</body>
+
+</html>

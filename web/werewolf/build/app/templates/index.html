@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Werewolf</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+</head>
+
+<body>
+  <section class="hero is-dark">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">
+          Werewolf
+        </h1>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-half">
+          <h1 class="title"></h1>
+          <form action="/" method="POST">
+            <div class="field">
+              <label class="label">Name</label>
+              <div class="control">
+                <input class="input" type="text" name="name">
+              </div>
+              <br>
+              <label class="label">Favorite color</label>
+              <select name="color">
+                <option>red</option>
+                <option>yellow</option>
+                <option>purple</option>
+                <option>aqua</option>
+                <option>blue</option>
+                <option>navy</option>
+                <option>green</option>
+              </select>
+            </div>
+            <br>
+            <input class="button is-dark is-fullwidth" type="submit" value="Start">
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>

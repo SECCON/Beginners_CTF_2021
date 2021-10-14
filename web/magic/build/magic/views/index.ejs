@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <title>Top - Magic Memo App</title>
+  <link rel="stylesheet" href="/static/bulma.min.css">
+</head>
+
+<body>
+  <div class="box">
+    <div class="columns">
+      <div class="column is-11 is-size-4 has-text-weight-semibold">Magic Memo App</div>
+      <div class="column">
+        <a href="/logout"><button class="button is-datk">Logout</button></a>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <section class="px-3 py-3">
+      <h1 class="mb-5 is-size-4 has-text-weight-semibold">Hello <%= username %>, Welcome to Magic Memo App.</h1>
+      <article class="message is-primary">
+        <div class="message-header">
+          <p>New feature is released!</p>
+        </div>
+        <div class="message-body">
+          <p>Are you tired of remembering your password? Use the MagicLink to login easily!</p>
+          <input type="hidden" id="magicLink" value="<%= magic_token %>">
+          <button id="copyMagicLink" class="button is-primary mt-3">Copy MagicLink</button>
+        </div>
+      </article>
+      <article class="message is-warning">
+        <div class="message-header">
+          <p>Bug?</p>
+        </div>
+        <div class="message-body">
+          <p>If you find a bug in this app, could you report it from <a href="/report">this page</a>?</p>
+        </div>
+      </article>
+    </section>
+    <section class="px-3 py-3">
+      <form method="POST" action="/memo">
+        <div class="field">
+          <label class="label">Memo</label>
+          <div class="control">
+            <input type="text" name="text" id="memoField" placeholder="Enter text" class="input">
+          </div>
+        </div>
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <div class="control">
+          <button type="submit" id="saveMemo" class="button is-link">Save</button>
+        </div>
+      </form>
+    </section>
+    <section class="px-3 py-3">
+      <% memos.reverse().forEach(function (value) { %>
+        <div class="box">
+          <div class="columns">
+            <div class="column is-11">
+              <p><%- value.text %></p>
+            </div>
+            <div class="column">
+              <form method="post" action="/memo/delete">
+                <input type="hidden" name="id" value="<%= value.id %>">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <button type="submit" class="button is-danger">Delete</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      <% }); %>
+    </section>
+  </div>
+
+  <script src="/static/index.js"></script>
+</body>
+
+</html>

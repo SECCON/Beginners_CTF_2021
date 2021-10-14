@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Report - Magic Memo App</title>
+  <link rel="stylesheet" href="/static/bulma.min.css">
+</head>
+
+<body>
+  <div class="container">
+    <section class="hero">
+      <div class="hero-body">
+        <p class="title">Report</p>
+      </div>
+    </section>
+    <section class="px-5">
+      <p class="mb-5">Back to <a href="/">Top page</a></p>
+      <form method="POST" action="/report">
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label">https://magic.quals.beginners.seccon.jp/</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <div class="control">
+                <input class="input" type="text" name="path" placeholder="path (e.g. login)">
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="mb-3">If you set <code>login</code> as path, admin will check
+          <code>https://magic.quals.beginners.seccon.jp/login</code></p>
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <div class="control">
+          <button type="submit" class="button is-link">Send</button>
+        </div>
+      </form>
+      <% if (success !== "") { %>
+      <div class="notification is-primary mt-4">
+        <p><%= success %></p>
+      </div>
+      <% } %>
+      <% if (error !== "") { %>
+      <div class="notification is-danger mt-4">
+        <p><%= error %></p>
+      </div>
+      <% } %>
+    </section>
+  </div>
+</body>
+
+</html>

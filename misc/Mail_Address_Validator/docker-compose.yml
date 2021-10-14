@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  mail_address_validator:
+    build:
+      context: .
+    restart: always
+    working_dir:  /home/pwn
+    container_name: mail_address_validator
+    ulimits:
+      nproc: 65535
+      core: 0
+    ports:
+      - "5100:5100"
+    entrypoint: /etc/init.sh
+

@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+    apache:
+        build: "./apache"
+        ports:
+            - "443:443"
+        volumes:
+            - "./public:/var/www/html"
+            - "./apache/default-ssl.conf:/etc/apache2/sites-available/default-ssl.conf"
+            - "./apache/certs:/etc/certs"

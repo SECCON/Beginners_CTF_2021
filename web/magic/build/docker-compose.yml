@@ -1,0 +1,51 @@
+version: "3"
+
+services:
+  nginx:
+    build: ./nginx
+    ports:
+      - 80:80
+  magic:
+    build: ./magic
+    environment:
+      - SESSION_SECRET=U6hHFZEzYGwLEezWHMjf3QM83Vn2DDSt
+      - MYSQL_HOST=mysql
+      - MYSQL_PORT=3306
+      - MYSQL_USER=user
+      - MYSQL_DATABASE=db
+      - MYSQL_PASSWORD=cV1DJZQZjMRphX4J
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - WAIT_HOSTS=mysql:3306
+      - WAIT_HOSTS_TIMEOUT=120
+  mysql:
+    image: mysql:5.7
+    environment:
+      - MYSQL_USER=user
+      - MYSQL_DATABASE=db
+      - MYSQL_PASSWORD=cV1DJZQZjMRphX4J
+      - MYSQL_ROOT_PASSWORD=tjBFu2hfyXXL15X5
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --max_connections=1000
+    volumes:
+      - ./init:/docker-entrypoint-initdb.d
+      - mysql:/var/lib/mysql
+  redis:
+    image: redis:6-alpine
+    volumes:
+      - redis:/data
+    ports:
+      - 16379:6379
+
+  crawler:
+    build: ./crawler
+    environment:
+      - USERNAME=admin
+      - PASSWORD=NNg74WLfBqaLQarn8BjBqQ2GE5vGstZ4
+      - FLAG=ctf4b{w0w_y0ur_skil1ful_3xploi7_c0de_1s_lik3_4_ma6ic_7rick}
+      - APP_URL=http://magic:3000/
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+
+volumes:
+  mysql:
+  redis:

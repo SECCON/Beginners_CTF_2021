@@ -1,0 +1,10 @@
+version: "3"
+
+services:
+  writeme:
+    build:
+      context: .
+    working_dir: /home/ctf/writeme
+    restart: always
+    ports:
+      - "27182:27182"

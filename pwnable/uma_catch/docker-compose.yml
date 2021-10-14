@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  uma_catch:
+    build:
+      context: .
+    restart: always
+    working_dir:  /home/pwn
+    container_name: uma_catch 
+    ulimits:
+      nproc: 65535
+      core: 0
+    ports:
+      - "4101:4101"
+    entrypoint: /etc/init.sh

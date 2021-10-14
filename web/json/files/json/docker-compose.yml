@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  nginx:
+    build: ./nginx
+    ports:
+      - 80:80
+  bff:
+    build: ./bff
+  api:
+    build: ./api
+    environment:
+      - FLAG=FAKE{this_is_fake_flag}

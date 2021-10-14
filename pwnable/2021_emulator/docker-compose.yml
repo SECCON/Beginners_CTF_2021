@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  2021_emulator:
+    build:
+      context: .
+    restart: always
+    working_dir:  /home/pwn
+    container_name: 2021_emulator
+    ulimits:
+      nproc: 65535
+      core: 0
+    ports:
+      - "4100:4100"
+    entrypoint: /etc/init.sh
